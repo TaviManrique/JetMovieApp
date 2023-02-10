@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "885750415424",
+    "project_id": "jetmovieapp",
+    "storage_bucket": "jetmovieapp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:885750415424:android:6cc6a10707723512335fa5",
+        "android_client_info": {
+          "package_name": "com.manriquetavi.jetmovieapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "885750415424-e7mftuflqvsq7b0k1ghktt3noj75kldh.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.manriquetavi.jetmovieapp",
+            "certificate_hash": "72cf121807f16d83453b358a6b98d3d474bb7f43"
+          }
+        },
+        {
+          "client_id": "885750415424-lm487d3n9k2qkqiuolsclk22u0crjknr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBKRJ40jLOr3OFOviN1ZfP8dXBXcAsQTbY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "885750415424-lm487d3n9k2qkqiuolsclk22u0crjknr.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
