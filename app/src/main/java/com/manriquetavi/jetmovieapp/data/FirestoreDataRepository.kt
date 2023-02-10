@@ -11,4 +11,5 @@ class FirestoreDataRepository @Inject constructor(
 ) {
     fun getAllMovies(): Flow<Response<List<Movie>?>> = firestoreDataSource.getAllMovies()
     fun searchMovies(query: String): Flow<Response<List<Movie>?>> = firestoreDataSource.searchMovies(query = query)
+    fun getSelectedMovie(movieId: String): Flow<Response<Movie?>> = firestoreDataSource.getSelectedMovie(movieId = movieId)
 }

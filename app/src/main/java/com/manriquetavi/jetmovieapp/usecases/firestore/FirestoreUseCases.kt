@@ -3,5 +3,6 @@ package com.manriquetavi.jetmovieapp.usecases.firestore
 
 data class FirestoreUseCases(
     val getAllMoviesUseCase: GetAllMoviesUseCase,
-    val searchMoviesUseCase: SearchMoviesUseCase
+    val searchMoviesUseCase: SearchMoviesUseCase,
+    val getSelectedMovieUseCase: GetSelectedMovieUseCase
 )

@@ -1,7 +1,7 @@
 package com.manriquetavi.jetmovieapp.data
 
-import android.util.Log
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.Query
 import com.manriquetavi.jetmovieapp.domain.model.Movie
 import com.manriquetavi.jetmovieapp.domain.model.Response
 import com.manriquetavi.jetmovieapp.domain.repository.FirestoreDataSource
@@ -16,6 +16,7 @@ class FirestoreDataImpl @Inject constructor(
     override fun getAllMovies(): Flow<Response<List<Movie>?>> = callbackFlow {
         val snapshotListener = firestore
             .collection("movies")
+            .orderBy("stars", Query.Direction.DESCENDING)
             .addSnapshotListener { snapshot, e ->
                 val response =
                     if (snapshot != null) {
@@ -34,8 +35,9 @@ class FirestoreDataImpl @Inject constructor(
     override fun searchMovies(query: String): Flow<Response<List<Movie>?>> = callbackFlow {
         val snapshotListener = firestore
             .collection("movies")
-            .whereGreaterThanOrEqualTo("title", query)
-            .whereGreaterThanOrEqualTo("director", query)
+            .orderBy("title")
+            .startAt(query)
+            .endAt(query + "\uf8ff")
             .addSnapshotListener { snapshot, e ->
                 val response =
                     if (snapshot != null) {

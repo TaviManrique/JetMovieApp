@@ -17,7 +17,7 @@ fun HomeTopBar(
     TopAppBar(
         title = {
             Text(
-                text = "JetMovieApp",
+                text = "Home",
                 color = MaterialTheme.colors.topAppBarContentColor
             )
         },

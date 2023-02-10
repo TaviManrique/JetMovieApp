@@ -7,6 +7,7 @@ import com.manriquetavi.jetmovieapp.usecases.datastore.ReadOnBoardingPageUseCase
 import com.manriquetavi.jetmovieapp.usecases.datastore.SaveOnBoardingPageUseCase
 import com.manriquetavi.jetmovieapp.usecases.firestore.FirestoreUseCases
 import com.manriquetavi.jetmovieapp.usecases.firestore.GetAllMoviesUseCase
+import com.manriquetavi.jetmovieapp.usecases.firestore.GetSelectedMovieUseCase
 import com.manriquetavi.jetmovieapp.usecases.firestore.SearchMoviesUseCase
 import dagger.Module
 import dagger.Provides
@@ -32,7 +33,8 @@ object UseCasesModule {
     fun provideFirestoreUseCases(firestoreDataRepository: FirestoreDataRepository): FirestoreUseCases {
         return FirestoreUseCases(
             getAllMoviesUseCase = GetAllMoviesUseCase(firestoreDataRepository),
-            searchMoviesUseCase = SearchMoviesUseCase(firestoreDataRepository)
+            searchMoviesUseCase = SearchMoviesUseCase(firestoreDataRepository),
+            getSelectedMovieUseCase = GetSelectedMovieUseCase(firestoreDataRepository)
         )
     }
 }

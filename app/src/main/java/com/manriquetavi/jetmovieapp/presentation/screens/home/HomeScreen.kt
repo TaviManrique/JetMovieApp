@@ -9,8 +9,9 @@ import com.manriquetavi.jetmovieapp.domain.model.Response
 
 @Composable
 fun HomeScreen(
+    movies: Response<List<Movie>?>,
     navigateToSearch: () -> Unit,
-    movies: Response<List<Movie>?>
+    navigateToDetail: (String) -> Unit
 ) {
     Scaffold(
         topBar = {
@@ -23,7 +24,7 @@ fun HomeScreen(
             is Response.Loading -> CircularProgress()
             is Response.Success -> HomeContent(
                 movies = movies.data,
-                navigateToSearch = navigateToSearch,
+                navigateToDetail = navigateToDetail,
                 paddingValues = paddingValues
             )
             is Response.Error -> EmptyScreen(message = movies.message)

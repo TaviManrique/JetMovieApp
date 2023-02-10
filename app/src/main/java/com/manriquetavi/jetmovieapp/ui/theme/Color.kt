@@ -13,12 +13,7 @@ val LightGray = Color(0xFFD8D8D8)
 val DarkGray = Color(0xFF2A2A2A)
 val StarColor = Color(0xFFFFC94D)
 
-val ShimmerLightGray = Color(0xFFF1F1F1)
-val ShimmerMediumGray = Color(0xFFE3E3E3)
-val ShimmerDarkGray = Color(0xFF1D1D1D)
 
-val Colors.statusBarColor
-    get() = if(isLight) Purple700 else Color.Black
 
 val Colors.backgroundColor
     get() = if(isLight) Color.White else Color.Black
@@ -35,7 +30,7 @@ val Colors.activateIndicatorColor
 val Colors.inactivateIndicatorColor
     get() = if(isLight) LightGray else DarkGray
 
-val Colors.iconNetwork
+val Colors.iconScreenInformation
     get() = if(isLight) LightGray else DarkGray
 
 val Colors.buttonBackgroundColor

@@ -24,17 +24,18 @@ import coil.request.ImageRequest
 import com.google.firebase.firestore.GeoPoint
 import com.manriquetavi.jetmovieapp.domain.model.Movie
 import com.manriquetavi.jetmovieapp.R
+import com.manriquetavi.jetmovieapp.common.core.capitalizeWords
 import com.manriquetavi.jetmovieapp.ui.theme.*
 
 @Composable
-fun HomeMovieItem(
+fun MovieItem(
     movie: Movie,
-    navigateToSearch: () -> Unit
+    navigateToDetail: (String) -> Unit
 ) {
     Box(
         modifier = Modifier
             .height(MOVIE_ITEM_HEIGHT)
-            .clickable { navigateToSearch() },
+            .clickable { navigateToDetail(movie.id!!) },
         contentAlignment = Alignment.BottomStart
     ) {
         Surface(
@@ -65,7 +66,7 @@ fun HomeMovieItem(
                     .padding(all = MEDIUM_PADDING)
             ) {
                 Text(
-                    text = movie.title.toString(),
+                    text = movie.title.toString().capitalizeWords(),
                     color = MaterialTheme.colors.topAppBarContentColor,
                     fontSize = MaterialTheme.typography.h5.fontSize,
                     fontWeight = FontWeight.Bold,
@@ -104,16 +105,16 @@ fun HomeMovieItem(
 fun HomeMovieItemPreview() {
     JetMovieAppTheme {
         Surface {
-            HomeMovieItem(
+            MovieItem(
                 movie = Movie(
-                    title = "Parasite",
-                    description = "Both Gi Taek and his family are out of work. When his eldest son, Gi Woo, begins teaching private lessons at the wealthy Park home, the two families, who have much in common despite being from two completely different worlds, strike up a relationship with unpredictable results.",
-                    image = "https://pics.filmaffinity.com/Par_sitos-406070218-large.jpg",
+                    title = "better call saul",
+                    description = "The best series of the world",
+                    image = "https://media.revistagq.com/photos/62fe075f5ab63dcb237f86de/16:9/w_2560%2Cc_limit/better-call-saul.jpeg",
                     stars = "4.5",
-                    director = "Bong Joon-ho",
+                    director = "Peter Gould",
                     geoPoint = GeoPoint(10.3, 15.0)
                 ),
-                navigateToSearch = { }
+                navigateToDetail = { }
             )
         }
     }

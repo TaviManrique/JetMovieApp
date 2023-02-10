@@ -18,7 +18,7 @@ import com.manriquetavi.jetmovieapp.ui.theme.SMALL_PADDING
 import com.manriquetavi.jetmovieapp.ui.theme.iconScreenInformation
 
 @Composable
-fun EmptyScreen(
+fun SearchIdleScreen(
     message: String
 ) {
     Column(
@@ -31,8 +31,8 @@ fun EmptyScreen(
         Icon(
             modifier = Modifier
                 .size(NETWORK_ERROR_ICON_HEIGHT),
-            painter = painterResource(R.drawable.ic_network_error),
-            contentDescription = "Error Icon",
+            painter = painterResource(R.drawable.ic_search_document),
+            contentDescription = "Search Document Icon",
             tint = MaterialTheme.colors.iconScreenInformation
         )
         Text(
