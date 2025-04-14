@@ -25,7 +25,7 @@ fun NavGraphBuilder.authNavGraph(
                 viewModel.eventFlow.collect { event ->
                     when (event) {
                         is LoginSingleEvent.NavigateToMain -> {
-                            rootNavController.navigate(Graph.DRAWER) {
+                            rootNavController.navigate(Screen.Home.route) {
                                 popUpTo(Screen.Login.route) { inclusive = true }
                             }
                         }

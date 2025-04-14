@@ -52,6 +52,32 @@ dependencies {
     //Icons
     implementation(libs.androidx.material.icons.extended)
 
+    //Coil
+    implementation(libs.coil.compose)
+    implementation(libs.coil.kt)
+
+    //Accompanist
+    implementation(libs.accompanist.placeholder)
+
+    //Retrofit
+    implementation(libs.retrofit.core)
+
+    //Gson
+    implementation(libs.retrofit.gson)
+
+    //Room
+    implementation(libs.androidx.room.runtime)
+    kapt(libs.androidx.room.compiler)
+    implementation(libs.androidx.room.ktx)
+    implementation(libs.androidx.room.paging)
+
+    //Paging
+    implementation(libs.androidx.paging.runtime)
+    implementation(libs.androidx.paging.compose)
+
+    //Log Interceptor
+    implementation(libs.logging.interceptor)
+
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)

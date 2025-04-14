@@ -1,11 +1,14 @@
 package com.tavimanrique.jetmovieapp.navigation
 
 import androidx.compose.runtime.Composable
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.Lifecycle
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import com.tavimanrique.jetmovieapp.features.main.MainScreen
+import androidx.paging.compose.collectAsLazyPagingItems
+import com.tavimanrique.jetmovieapp.features.home.HomeScreen
+import com.tavimanrique.jetmovieapp.features.home.HomeViewModel
 
 @Composable
 fun SetUpNavGraph(
@@ -18,8 +21,13 @@ fun SetUpNavGraph(
         startDestination = startDestination
     ) {
         authNavGraph(rootNavController)
-        composable(route = Graph.DRAWER) {
-            MainScreen(rootNavController = rootNavController)
+        composable(route = Screen.Home.route) {
+            val viewModel: HomeViewModel = hiltViewModel()
+            val movies = viewModel.movies.collectAsLazyPagingItems()
+            HomeScreen(
+                movies = movies,
+                onProfileClick = { rootNavController.navigate(Screen.Profile.route) }
+            )
         }
     }
 
@@ -31,5 +39,4 @@ val NavHostController.canGoBack: Boolean
 object Graph{
     const val ROOT = "root_graph"
     const val AUTH = "auth_graph"
-    const val DRAWER = "drawer_graph"
 }
