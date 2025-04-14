@@ -1,6 +1,7 @@
 package com.tavimanrique.jetmovieapp.navigation
 
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
@@ -14,6 +15,11 @@ import com.tavimanrique.jetmovieapp.features.detail.DetailScreen
 import com.tavimanrique.jetmovieapp.features.detail.DetailViewModel
 import com.tavimanrique.jetmovieapp.features.home.HomeScreen
 import com.tavimanrique.jetmovieapp.features.home.HomeViewModel
+import com.tavimanrique.jetmovieapp.features.login.LoginScreen
+import com.tavimanrique.jetmovieapp.features.login.LoginSingleEvent
+import com.tavimanrique.jetmovieapp.features.login.LoginViewModel
+import com.tavimanrique.jetmovieapp.features.profile.ProfileScreen
+import com.tavimanrique.jetmovieapp.features.profile.ProfileViewModel
 
 @Composable
 fun SetUpNavGraph(
@@ -22,10 +28,27 @@ fun SetUpNavGraph(
 ) {
     NavHost(
         navController = rootNavController,
-        route = Graph.ROOT,
         startDestination = startDestination
     ) {
-        authNavGraph(rootNavController)
+        composable(route = Screen.Login.route) {
+            val viewModel: LoginViewModel = hiltViewModel()
+            val uiState = viewModel.uiState.collectAsStateWithLifecycle()
+            LaunchedEffect(Unit) {
+                viewModel.eventFlow.collect { event ->
+                    when (event) {
+                        is LoginSingleEvent.NavigateToMain -> {
+                            rootNavController.navigate(Screen.Home.route) {
+                                popUpTo(Screen.Login.route) { inclusive = true }
+                            }
+                        }
+                    }
+                }
+            }
+            LoginScreen(
+                state = uiState.value,
+                onEvent = viewModel::onEvent
+            )
+        }
         composable(route = Screen.Home.route) {
             val viewModel: HomeViewModel = hiltViewModel()
             val movies = viewModel.movies.collectAsLazyPagingItems()
@@ -47,9 +70,22 @@ fun SetUpNavGraph(
             val uiState = viewModel.uiState.collectAsStateWithLifecycle()
             DetailScreen(
                 uiState = uiState.value,
-                onBackClick = {
-                    if (rootNavController.canGoBack) rootNavController.popBackStack()
-                }
+                onBackClick = { if (rootNavController.canGoBack) rootNavController.popBackStack() }
+            )
+        }
+        composable(route = Screen.Profile.route) {
+            val viewModel: ProfileViewModel = hiltViewModel()
+            val uiState = viewModel.uiState.collectAsStateWithLifecycle()
+            ProfileScreen(
+                uiState = uiState.value,
+                onLogoutClick = {
+                    viewModel.logout {
+                        rootNavController.navigate(Screen.Login.route) {
+                            popUpTo(0) { inclusive = true }
+                        }
+                    }
+                },
+                onBackClick = { if (rootNavController.canGoBack) rootNavController.popBackStack() }
             )
         }
     }
@@ -58,8 +94,3 @@ fun SetUpNavGraph(
 
 val NavHostController.canGoBack: Boolean
     get() = this.currentBackStackEntry?.getLifecycle()?.currentState == Lifecycle.State.RESUMED
-
-object Graph{
-    const val ROOT = "root_graph"
-    const val AUTH = "auth_graph"
-}

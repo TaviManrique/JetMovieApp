@@ -39,6 +39,7 @@ fun HomeScreen(
     onMovieClick: (Int) -> Unit
 ) {
     Scaffold(
+        modifier = Modifier.fillMaxSize(),
         topBar = {
             TopAppBar(
                 title = { Text("Movies") },

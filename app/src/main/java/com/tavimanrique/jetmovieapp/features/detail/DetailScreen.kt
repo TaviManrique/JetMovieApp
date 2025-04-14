@@ -39,6 +39,7 @@ fun DetailScreen(
     onBackClick: () -> Unit
 ) {
     Scaffold(
+        modifier = Modifier.fillMaxSize(),
         topBar = {
             TopAppBar(
                 title = { Text(text = "Detail Movie") },

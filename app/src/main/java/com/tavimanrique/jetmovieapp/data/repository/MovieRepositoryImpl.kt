@@ -1,5 +1,6 @@
 package com.tavimanrique.jetmovieapp.data.repository
 
+import android.content.Context
 import androidx.paging.ExperimentalPagingApi
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
@@ -9,14 +10,17 @@ import com.tavimanrique.jetmovieapp.data.local.database.MovieDatabase
 import com.tavimanrique.jetmovieapp.data.local.mapper.toDomain
 import com.tavimanrique.jetmovieapp.data.paging.MovieRemoteMediator
 import com.tavimanrique.jetmovieapp.domain.model.Movie
+import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject
+import androidx.core.content.edit
 
 @OptIn(ExperimentalPagingApi::class)
 class MovieRepositoryImpl @Inject constructor(
     private val movieDatabase: MovieDatabase,
-    private val remoteMediator: MovieRemoteMediator
+    private val remoteMediator: MovieRemoteMediator,
+    @ApplicationContext private val context: Context
 ) : MovieRepository {
 
     override fun getMovies(): Flow<PagingData<Movie>> {
@@ -37,5 +41,11 @@ class MovieRepositoryImpl @Inject constructor(
 
     override suspend fun getMovieById(id: Int): Movie? {
         return movieDatabase.movieDao().getMovieById(id)?.toDomain()
+    }
+
+    override suspend fun clearUserData() {
+        movieDatabase.movieDao().clearAll()
+        context.getSharedPreferences("movie_prefs", Context.MODE_PRIVATE)
+            .edit { clear() }
     }
 }

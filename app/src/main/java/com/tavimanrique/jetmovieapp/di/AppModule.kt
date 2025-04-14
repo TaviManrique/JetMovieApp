@@ -28,9 +28,10 @@ object AppModule {
     @Singleton
     fun provideMovieRepository(
         movieDatabase: MovieDatabase,
-        movieRemoteMediator: MovieRemoteMediator
+        movieRemoteMediator: MovieRemoteMediator,
+        @ApplicationContext context: Context
     ): MovieRepository {
-        return MovieRepositoryImpl(movieDatabase, movieRemoteMediator)
+        return MovieRepositoryImpl(movieDatabase, movieRemoteMediator, context)
     }
 
     @Provides
