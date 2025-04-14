@@ -1,5 +1,5 @@
 plugins {
-    alias(libs.plugins.android.application)
+    alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
     id("kotlin-kapt")
@@ -7,17 +7,14 @@ plugins {
 }
 
 android {
-    namespace = "com.tavimanrique.jetmovieapp"
+    namespace = "com.tavimanrique.presentation"
     compileSdk = libs.versions.compileSdk.get().toInt()
 
     defaultConfig {
-        applicationId = "com.tavimanrique.jetmovieapp"
         minSdk = libs.versions.minSdk.get().toInt()
-        targetSdk = libs.versions.targetSdk.get().toInt()
-        versionCode = 1
-        versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles("consumer-rules.pro")
     }
 
     buildTypes {
@@ -42,9 +39,9 @@ android {
 }
 
 dependencies {
+
     implementation(project(":data"))
     implementation(project(":domain"))
-    implementation(project(":presentation"))
 
     // Dagger Hilt
     implementation(libs.hilt.android)

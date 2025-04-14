@@ -11,15 +11,15 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
 import androidx.paging.compose.collectAsLazyPagingItems
-import com.tavimanrique.jetmovieapp.features.detail.DetailScreen
-import com.tavimanrique.jetmovieapp.features.detail.DetailViewModel
-import com.tavimanrique.jetmovieapp.features.home.HomeScreen
-import com.tavimanrique.jetmovieapp.features.home.HomeViewModel
-import com.tavimanrique.jetmovieapp.features.login.LoginScreen
-import com.tavimanrique.jetmovieapp.features.login.LoginSingleEvent
-import com.tavimanrique.jetmovieapp.features.login.LoginViewModel
-import com.tavimanrique.jetmovieapp.features.profile.ProfileScreen
-import com.tavimanrique.jetmovieapp.features.profile.ProfileViewModel
+import com.tavimanrique.presentation.detail.DetailScreen
+import com.tavimanrique.presentation.detail.DetailViewModel
+import com.tavimanrique.presentation.home.HomeScreen
+import com.tavimanrique.presentation.home.HomeViewModel
+import com.tavimanrique.presentation.login.LoginScreen
+import com.tavimanrique.presentation.login.LoginSingleEvent
+import com.tavimanrique.presentation.login.LoginViewModel
+import com.tavimanrique.presentation.profile.ProfileScreen
+import com.tavimanrique.presentation.profile.ProfileViewModel
 
 @Composable
 fun SetUpNavGraph(
