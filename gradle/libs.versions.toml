@@ -24,6 +24,9 @@ minSdk = "24"
 compileSdk = "35"
 targetSdk = "35"
 iconsVersion = "1.7.8"
+jetbrainsKotlinJvmVersion = "2.0.21"
+appcompatVersion = "1.7.0"
+materialVersion = "1.10.0"
 
 [libraries]
 androidx-material3 = { group = "androidx.compose.material3", name = "material3" }
@@ -61,10 +64,14 @@ logging-interceptor = { module = "com.squareup.okhttp3:logging-interceptor", ver
 androidx-ui-test-manifest = { group = "androidx.compose.ui", name = "ui-test-manifest" }
 androidx-ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit4" }
 turbine = { module = "app.cash.turbine:turbine", version.ref = "turbineVersion" }
+androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompatVersion" }
+material = { group = "com.google.android.material", name = "material", version.ref = "materialVersion" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kotlin-compose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 android-hilt = { id = "com.google.dagger.hilt.android", version.ref = "hiltVersion" }
+jetbrains-kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "jetbrainsKotlinJvmVersion" }
+android-library = { id = "com.android.library", version.ref = "agp" }
 
