@@ -34,4 +34,8 @@ class MovieRepositoryImpl @Inject constructor(
                 pagingData.map { it.toDomain() }
             }
     }
+
+    override suspend fun getMovieById(id: Int): Movie? {
+        return movieDatabase.movieDao().getMovieById(id)?.toDomain()
+    }
 }

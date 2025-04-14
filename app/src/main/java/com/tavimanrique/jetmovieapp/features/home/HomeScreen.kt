@@ -35,7 +35,8 @@ import androidx.paging.LoadState
 @Composable
 fun HomeScreen(
     movies: LazyPagingItems<Movie>,
-    onProfileClick: () -> Unit
+    onProfileClick: () -> Unit,
+    onMovieClick: (Int) -> Unit
 ) {
     Scaffold(
         topBar = {
@@ -65,7 +66,7 @@ fun HomeScreen(
                 }
             }
             else -> {
-                HomeContent(movies = movies, padding = padding)
+                HomeContent(movies = movies, padding = padding, onMovieClick = onMovieClick)
             }
         }
     }
@@ -75,6 +76,7 @@ fun HomeScreen(
 fun HomeContent(
     padding: PaddingValues,
     movies: LazyPagingItems<Movie>,
+    onMovieClick: (Int) -> Unit
 ) {
     val listState = rememberLazyListState()
     val hasScrolledToTop = rememberSaveable { mutableStateOf(false) }
@@ -102,7 +104,7 @@ fun HomeContent(
                 movies[index]?.id ?: index
             }
         ) { index ->
-            movies[index]?.let { MovieItem(movie = it) }
+            movies[index]?.let { MovieItem(movie = it, onClick = { onMovieClick(it.id) }) }
         }
         when (movies.loadState.append) {
             LoadState.Loading -> {
